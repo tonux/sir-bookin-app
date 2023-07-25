@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{room.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{room.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/rooms}" th:text="#{room.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('room')}" />
+            <form th:action="${T(sn.sir.booking.sir_booking_app.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='room', field='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='room', field='description')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='room', field='typeRoom', type='radio')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='room', field='hotel', type='select')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='room', field='reservations', type='select')}" />
+                <input type="submit" th:value="#{room.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
